@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="20" style="-fx-background-color: #EEA7B0; -fx-padding: 30;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ce216project.MainPageController">
+
+<!-- Hoşgeldiniz Mesajı -->
+    <Label style="-fx-font-size: 22px; -fx-text-fill: #6a0572; -fx-font-weight: bold;" text="🎮 Welcome to Game Catalog App! 🎮" />
+
+                  
+                  <Button fx:id="fileButton" style="-fx-background-color: #F1E9D7; -fx-text-fill: #333; -fx-font-size: 16px; -fx-padding: 12 30; -fx-background-radius: 20; -fx-border-radius: 20; -fx-font-weight: bold;" text="📂 Upload A File" />
+
+      <!-- Butonlar İçin HBox (Yatay Konumlandırma) -->
+    <HBox alignment="CENTER" spacing="15">
+    <!-- Yardım Butonu -->
+        <Button fx:id="helpButton" style="-fx-background-color: #F1E9D7; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 10 20; -fx-background-radius: 15; -fx-border-radius: 15;" text="❓ Help" />
+   
+    <!-- Kullanıcı Rehberi Butonu -->
+        <Button fx:id="userGuideButton" style="-fx-background-color: #F1E9D7; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 10 20; -fx-background-radius: 15; -fx-border-radius: 15;" text="📖 User Guide" />
+    </HBox>
+
+</VBox>
