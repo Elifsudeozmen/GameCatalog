@@ -10,6 +10,7 @@ module org.example.ce216project {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires com.google.gson;
 
     opens org.example.ce216project to javafx.fxml;
     exports org.example.ce216project;
