@@ -12,6 +12,8 @@ module org.example.ce216project {
     requires com.almasb.fxgl.all;
     requires com.google.gson;
 
-    opens org.example.ce216project to javafx.fxml;
+    opens org.example.ce216project to javafx.fxml,com.google.gson;
     exports org.example.ce216project;
+
+
 }

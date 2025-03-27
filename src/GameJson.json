@@ -1,0 +1,34 @@
+[
+  {
+    "title": "The Witcher 3: Wild Hunt",
+    "genres": ["RPG", "Open World"],
+    "developer": "CD Projekt",
+    "publisher": "CD Projekt",
+    "platforms": ["PC", "PS4", "Xbox One"],
+    "translators": ["Fan Translation"],
+    "steamId": "292030",
+    "releaseYear": 2015,
+    "playtime": 120.5,
+    "format": "Digital",
+    "language": ["English"],
+    "rating": 9.5,
+    "tags": ["Fantasy", "Story Rich"],
+    "coverImagePath": "covers/witcher3.jpg"
+  },
+  {
+    "title": "Hades",
+    "genres": ["Roguelike", "Action"],
+    "developer": "Supergiant Games",
+    "publisher": "Supergiant Games",
+    "platforms": ["PC", "Switch"],
+    "translators": [],
+    "steamId": "1145360",
+    "releaseYear": 2020,
+    "playtime": 50.0,
+    "format": "Digital",
+    "language": ["English"],
+    "rating": 9.0,
+    "tags": ["Indie", "Greek Mythology"],
+    "coverImagePath": "covers/hades.jpg"
+  }
+]

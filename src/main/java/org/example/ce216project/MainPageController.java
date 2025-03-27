@@ -17,9 +17,10 @@ public class MainPageController {
 
         if (selectedFile != null) {
             if (selectedFile.getName().endsWith(".json")) {
-                //bunu implement
-                //List<Game> games = JSONHandler.readGamesFromJson(selectedFile.getAbsolutePath());
+                List<Game> games = JSONHandler.readGamesFromJson(selectedFile.getAbsolutePath());
                 System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+                System.out.println("Name: " + games.get(0).getTitle());
+                System.out.println("Languages: " + games.get(0).getLanguage());
             } else {
                 showAlert("Invalid File", "Please select a valid JSON file!");
             }
