@@ -5,12 +5,13 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ce216project.HomePageController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ce216project.HomePage">
 <children>
     <TextField fx:id="searchBar" layoutX="51.0" layoutY="39.0" onKeyReleased="#onEnterSearch" prefHeight="26.0" prefWidth="500.0" promptText="search..." />
 
@@ -59,9 +60,23 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="221.0" prefWidth="484.0">
                <children>
-                  <Button layoutX="13.0" layoutY="4.0" mnemonicParsing="false" onAction="#openGame" prefHeight="54.0" prefWidth="459.0" text="game1" />
-                  <Button layoutX="11.0" layoutY="66.0" mnemonicParsing="false" onAction="#openGame" prefHeight="57.0" prefWidth="461.0" text="game2" />
-                  <Button layoutX="11.0" layoutY="131.0" mnemonicParsing="false" onAction="#openGame" prefHeight="59.0" prefWidth="461.0" text="game3" />
+                  <TableView prefHeight="200.0" prefWidth="481.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="Title" />
+                        <TableColumn prefWidth="75.0" text="Genre" />
+                        <TableColumn prefWidth="75.0" text="Delevoper" />
+                        <TableColumn prefWidth="75.0" text="Publisher" />
+                        <TableColumn prefWidth="75.0" text="Platforms" />
+                        <TableColumn prefWidth="75.0" text="Translators" />
+                        <TableColumn prefWidth="75.0" text="SteamID" />
+                        <TableColumn prefWidth="75.0" text="Release Year" />
+                        <TableColumn prefWidth="75.0" text="Playtime" />
+                        <TableColumn prefWidth="75.0" text="Format" />
+                        <TableColumn prefWidth="75.0" text="Language" />
+                        <TableColumn prefWidth="75.0" text="Rating" />
+                        <TableColumn prefWidth="75.0" text="Tags" />
+                    </columns>
+                  </TableView>
                </children>
             </AnchorPane>
         </content>
