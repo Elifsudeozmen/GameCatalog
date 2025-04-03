@@ -11,19 +11,19 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ce216project.HomePage">
 <children>
-    <TextField layoutX="51.0" layoutY="39.0" prefHeight="26.0" prefWidth="500.0" promptText="search..." />
+    <TextField fx:id="searchBar" layoutX="51.0" layoutY="39.0" onKeyReleased="#onEnterSearch" prefHeight="26.0" prefWidth="500.0" promptText="search..." />
 
-    <Button layoutX="280.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: #A8E6CF;" text="help" underline="true">
+    <Button layoutX="280.0" layoutY="360.0" mnemonicParsing="false" onAction="#onHelpButton" style="-fx-background-color: #A8E6CF;" text="help" underline="true">
         <font>
             <Font name="Arial" size="13.0" />
         </font>
     </Button>
-    <Button layoutX="179.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: #A8E6CF;" text="add" textFill="#101111" underline="true">
+    <Button layoutX="179.0" layoutY="360.0" mnemonicParsing="false" onAction="#onAddButton" style="-fx-background-color: #A8E6CF;" text="add" textFill="#101111" underline="true">
         <font>
             <Font name="Arial" size="13.0" />
         </font>
     </Button>
-    <Button layoutX="378.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: #A8E6CF;" text="export" underline="true">
+    <Button layoutX="378.0" layoutY="360.0" mnemonicParsing="false" onAction="#onExportButton" style="-fx-background-color: #A8E6CF;" text="export" underline="true">
         <font>
             <Font name="Arial" size="13.0" />
         </font>
