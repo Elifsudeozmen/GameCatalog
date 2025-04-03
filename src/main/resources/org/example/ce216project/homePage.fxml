@@ -2,6 +2,8 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,53 +11,45 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ce216project.HomePage">
 <children>
-    <!-- Search Bar -->
-    <TextField layoutX="51.0" layoutY="39.0" prefHeight="26.0" prefWidth="500.0" promptText="search" />
+    <TextField layoutX="51.0" layoutY="39.0" prefHeight="26.0" prefWidth="500.0" promptText="search..." />
 
-    <!-- Action Buttons (Help, Add, Export) -->
-    <Button layoutX="280.0" layoutY="360.0" mnemonicParsing="false" text="help" underline="true">
+    <Button layoutX="280.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: #A8E6CF;" text="help" underline="true">
         <font>
             <Font name="Arial" size="13.0" />
         </font>
     </Button>
-    <Button layoutX="179.0" layoutY="360.0" mnemonicParsing="false" text="add" textFill="#101111" underline="true">
+    <Button layoutX="179.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: #A8E6CF;" text="add" textFill="#101111" underline="true">
         <font>
             <Font name="Arial" size="13.0" />
         </font>
     </Button>
-    <Button layoutX="378.0" layoutY="360.0" mnemonicParsing="false" text="export" underline="true">
+    <Button layoutX="378.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: #A8E6CF;" text="export" underline="true">
         <font>
             <Font name="Arial" size="13.0" />
         </font>
     </Button>
 
-    <!-- Filter Buttons -->
-    <Button layoutX="70.0" layoutY="75.0" mnemonicParsing="false" text="singleplayer">
+    <Button layoutX="70.0" layoutY="75.0" mnemonicParsing="false" style="-fx-background-color: #A8E6CF;" text="singleplayer">
         <font>
             <Font name="Avenir Next Demi Bold" size="13.0" />
         </font>
     </Button>
-    <Button layoutX="175.0" layoutY="75.0" mnemonicParsing="false" text="multiplayer">
+    <Button layoutX="175.0" layoutY="75.0" mnemonicParsing="false" style="-fx-background-color: #A8E6CF;" text="multiplayer">
         <font>
             <Font name="Avenir Next Demi Bold" size="13.0" />
         </font>
     </Button>
-    <Button layoutX="280.0" layoutY="75.0" mnemonicParsing="false" text="FPS">
+    <Button layoutX="280.0" layoutY="75.0" mnemonicParsing="false" style="-fx-background-color: #A8E6CF;" text="FPS">
         <font>
             <Font name="Avenir Next Demi Bold" size="13.0" />
         </font>
     </Button>
-    <Button layoutX="334.0" layoutY="75.0" mnemonicParsing="false" text="RPG">
+    <Button layoutX="334.0" layoutY="75.0" mnemonicParsing="false" style="-fx-background-color: #A8E6CF;" text="RPG">
         <font>
             <Font name="Avenir Next Demi Bold" size="13.0" />
         </font>
     </Button>
-    <Button layoutX="391.0" layoutY="75.0" mnemonicParsing="false" text="action">
-        <font>
-            <Font name="Avenir Next Demi Bold" size="13.0" />
-        </font>
-    </Button>
-    <Button layoutX="459.0" layoutY="75.0" mnemonicParsing="false" text="more">
+    <Button layoutX="394.0" layoutY="75.0" mnemonicParsing="false" style="-fx-background-color: #A8E6CF;" text="action">
         <font>
             <Font name="Avenir Next Demi Bold" size="13.0" />
         </font>
@@ -71,6 +65,12 @@
             </AnchorPane>
         </content>
       </ScrollPane>
+      <MenuButton layoutX="460.0" layoutY="76.0" mnemonicParsing="false" style="-fx-background-color: #A8E6CF;" text="more">
+        <items>
+          <MenuItem mnemonicParsing="false" text="tag1" />
+          <MenuItem mnemonicParsing="false" text="tag2" />
+        </items>
+      </MenuButton>
 </children>
 <cursor>
     <Cursor fx:constant="HAND" />
