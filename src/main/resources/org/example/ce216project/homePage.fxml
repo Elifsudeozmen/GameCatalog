@@ -8,38 +8,29 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFD1DC;"
             xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.example.ce216project.HomePageController">
+
     <children>
 
-
-        <TextField fx:id="searchBar" layoutX="50.0" layoutY="30.0"
+        <!-- Search Bar -->
+        <TextField fx:id="searchBar"
+                   layoutX="50.0" layoutY="30.0"
                    prefHeight="30.0" prefWidth="500.0"
                    onKeyReleased="#onEnterSearch"
                    promptText="search..."
                    style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8;" />
 
-
+        <!-- Genre Dropdown -->
         <HBox layoutX="50.0" layoutY="75.0" spacing="10.0">
-            <Button text="singleplayer" styleClass="category-button"/>
-            <Button text="multiplayer" styleClass="category-button"/>
-            <Button text="FPS" styleClass="category-button"/>
-            <Button text="RPG" styleClass="category-button"/>
-            <Button text="action" styleClass="category-button"/>
-            <MenuButton text="more" styleClass="category-button">
-                <items>
-                    <MenuItem text="tag1"/>
-                    <MenuItem text="tag2"/>
-                </items>
-            </MenuButton>
+            <MenuButton fx:id="moreMenuButton" text="Filters" styleClass="category-button"/>
         </HBox>
 
-
-        <ListView fx:id="gameListView" layoutX="50.0" layoutY="120.0"
+        <!-- Game ListView -->
+        <ListView fx:id="gameListView"
+                  layoutX="50.0" layoutY="120.0"
                   prefHeight="220.0" prefWidth="500.0"
-                  style="-fx-background-color: #FFE3E3; -fx-control-inner-background: #FFE3E3;"
+                  style="-fx-background-color: #FFE3E3; -fx-control-inner-background: #FFE3E3;" />
 
-                  />
-
-
+        <!-- Bottom Buttons -->
         <HBox layoutX="50.0" layoutY="360.0" spacing="10.0" prefWidth="500.0">
             <Button fx:id="addButton" onAction="#onAddButton" text="Add Game" styleClass="action-button" HBox.hgrow="ALWAYS"/>
             <Button fx:id="helpButton" onAction="#onHelpButton" text="Help" styleClass="action-button" HBox.hgrow="ALWAYS"/>
