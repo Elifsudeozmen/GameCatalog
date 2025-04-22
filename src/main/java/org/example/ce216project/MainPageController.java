@@ -30,6 +30,10 @@ public class MainPageController {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("homePage.fxml"));
                     Parent homePageRoot = loader.load();
+
+                    HomePageController controller = loader.getController();
+                    controller.setGameList(games);
+
                     Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(new Scene(homePageRoot));
                     stage.show();

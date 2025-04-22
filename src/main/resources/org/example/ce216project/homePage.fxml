@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.ListView?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ce216project.HomePageController">
 <children>
     <TextField fx:id="searchBar" layoutX="51.0" layoutY="39.0" onKeyReleased="#onEnterSearch" prefHeight="26.0" prefWidth="500.0" promptText="search..." />
@@ -60,23 +61,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="221.0" prefWidth="484.0">
                <children>
-                  <TableView prefHeight="200.0" prefWidth="481.0">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="Title" />
-                        <TableColumn prefWidth="75.0" text="Genre" />
-                        <TableColumn prefWidth="75.0" text="Delevoper" />
-                        <TableColumn prefWidth="75.0" text="Publisher" />
-                        <TableColumn prefWidth="75.0" text="Platforms" />
-                        <TableColumn prefWidth="75.0" text="Translators" />
-                        <TableColumn prefWidth="75.0" text="SteamID" />
-                        <TableColumn prefWidth="75.0" text="Release Year" />
-                        <TableColumn prefWidth="75.0" text="Playtime" />
-                        <TableColumn prefWidth="75.0" text="Format" />
-                        <TableColumn prefWidth="75.0" text="Language" />
-                        <TableColumn prefWidth="75.0" text="Rating" />
-                        <TableColumn prefWidth="75.0" text="Tags" />
-                    </columns>
-                  </TableView>
+                  <ListView fx:id="gameListView" layoutX="0.0" layoutY="0.0" prefWidth="480.0" prefHeight="210.0"/>
                </children>
             </AnchorPane>
         </content>
