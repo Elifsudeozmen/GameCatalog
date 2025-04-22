@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ce216project.AddGameController">
+
+    <!-- Orta kısım: Form -->
+    <center>
+        <GridPane hgap="10" vgap="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints halignment="RIGHT"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <!-- Satır 0 -->
+            <Label text="Title:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="titleField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Release Year:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <TextField fx:id="releaseYearField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+            <!-- Satır 1 -->
+            <Label text="Genre:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="genreField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="Play Time:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+            <TextField fx:id="playtimeField" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+            <!-- Satır 2 -->
+            <Label text="Developer:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="developerField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Label text="Format:" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+            <TextField fx:id="formatField" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+            <!-- Satır 3 -->
+            <Label text="Publisher:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="publisherField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Label text="Language:" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+            <TextField fx:id="languageField" GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+
+            <!-- Satır 4 -->
+            <Label text="Platforms:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <TextField fx:id="platformsField" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <Label text="Rating:" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+            <TextField fx:id="ratingField" GridPane.rowIndex="4" GridPane.columnIndex="3"/>
+
+            <!-- Satır 5 -->
+            <Label text="Translators:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <TextField fx:id="translatorsField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            <Label text="Tags:" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
+            <TextField fx:id="tagsField" GridPane.rowIndex="5" GridPane.columnIndex="3"/>
+
+            <!-- Satır 6 -->
+            <Label text="Steam Id:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextField fx:id="steamIdField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+            <Label text="Cover Image:" GridPane.rowIndex="6" GridPane.columnIndex="2"/>
+            <TextField fx:id="coverImageField" GridPane.rowIndex="6" GridPane.columnIndex="3"/>
+
+        </GridPane>
+    </center>
+
+    <!-- Alt kısım: Butonlar -->
+    <bottom>
+        <HBox spacing="20" alignment="CENTER">
+            <padding>
+                    <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+            <Button text="save" fx:id="saveButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+            <Button text="clear" fx:id="clearButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+            <Button text="cancel" fx:id="cancelButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+            <Button text="Help" fx:id="helpButton" HBox.hgrow="ALWAYS" maxWidth="Infinity"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
