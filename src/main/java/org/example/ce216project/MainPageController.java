@@ -1,14 +1,20 @@
 package org.example.ce216project;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.Parent;
+
+import javafx.event.ActionEvent;
 
 import java.io.File;
 import java.util.List;
 
 public class MainPageController {
-    public void onEnterFileButtonClick() {
+    public void onEnterFileButtonClick(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select a JSon File");
         FileChooser.ExtensionFilter jsonFilter = new FileChooser.ExtensionFilter("JSON Files (*.json)", "*.json");
@@ -21,9 +27,21 @@ public class MainPageController {
                 System.out.println("Selected file: " + selectedFile.getAbsolutePath());
                 System.out.println("Name: " + games.get(0).getTitle());
                 System.out.println("Languages: " + games.get(0).getLanguage());
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("homePage.fxml"));
+                    Parent homePageRoot = loader.load();
+                    Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(new Scene(homePageRoot));
+                    stage.show();
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+
             } else {
                 showAlert("Invalid File", "Please select a valid JSON file!");
             }
+
         }
         else{
                 showAlert("No File Selected", "You must select a JSON file.");
