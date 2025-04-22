@@ -15,6 +15,7 @@ public class HomePageController {
     @FXML
     private ListView<String> gameListView;
     private List<Game> gameList;
+
     public void setGameList(List<Game> games){
         this.gameList=games;
         List<String> titles = games.stream().map(Game::getTitle).toList();
