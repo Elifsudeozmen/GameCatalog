@@ -99,8 +99,22 @@ public class HomePageController {
     }
 
     @FXML
-    private void onHelpButton() {
+    private void showHelpDialog() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("🕹️ How to Use the Game Library");
+        alert.setHeaderText("Need Help? Here’s what you can do:");
+        alert.setContentText(
+                "🔍 To search for a game, use the search bar.\n" +
+                        "🏷️ To filter games according to their tags, use the filters.\n" +
+                        "➕ To add more games, use the 'Add Game' button.\n" +
+                        "📄 To display game info, click on a game.\n" +
+                        "📤 If you're done, use the 'Export' button."
+        );
+        alert.showAndWait();
+    }
 
+    public void onHelpButton() {
+        showHelpDialog();
     }
 
     @FXML
