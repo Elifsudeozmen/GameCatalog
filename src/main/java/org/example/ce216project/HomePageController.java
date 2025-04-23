@@ -1,40 +1,99 @@
 package org.example.ce216project;
-import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
-import java.io.File;
-import java.util.List;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.util.*;
+
 public class HomePageController {
+
     @FXML
     private TextField searchBar;
+
     @FXML
     private ListView<String> gameListView;
-    private List<Game> gameList;
 
-    public void setGameList(List<Game> games){
-        this.gameList=games;
-        List<String> titles = games.stream().map(Game::getTitle).toList();
-        gameListView.getItems().setAll(titles);
+    @FXML
+    private Button addButton, helpButton, exportButton;
+
+    @FXML
+    private MenuButton moreMenuButton;
+
+    private List<Game> gameList = new ArrayList<>();
+
+    public void setGameList(List<Game> games) {
+        this.gameList = games;
+        updateGameListView(games);
+        populateGenreButtons();
     }
 
-    public void onEnterSearch(){
+    @FXML
+    private void onEnterSearch(KeyEvent event) {
+        String query = searchBar.getText().trim().toLowerCase();
 
+        List<String> filtered = gameList.stream()
+                .map(Game::getTitle)
+                .filter(title -> title.toLowerCase().contains(query))
+                .toList();
+
+        gameListView.setItems(FXCollections.observableArrayList(filtered));
     }
-    public void onAddButton(){
 
+    private void populateGenreButtons() {
+        if (gameList == null || gameList.isEmpty()) return;
+
+        Set<String> allGenres = new TreeSet<>();
+        for (Game game : gameList) {
+            List<String> genres = game.getGenres();
+            if (genres != null) {
+                allGenres.addAll(genres);
+            }
+        }
+
+        moreMenuButton.getItems().clear();
+
+        for (String genre : allGenres) {
+            MenuItem item = new MenuItem(genre);
+            item.setOnAction(e -> filterGamesByGenre(genre));
+            moreMenuButton.getItems().add(item);
+        }
     }
-    public void onHelpButton(){
 
+    private void filterGamesByGenre(String genre) {
+        List<String> filteredTitles = gameList.stream()
+                .filter(g -> g.getGenres() != null && g.getGenres().contains(genre))
+                .map(Game::getTitle)
+                .toList();
+
+        gameListView.setItems(FXCollections.observableArrayList(filteredTitles));
     }
-    public void onExportButton(){
 
+    private void updateGameListView(List<Game> games) {
+        List<String> titles = games.stream()
+                .map(Game::getTitle)
+                .toList();
+        gameListView.setItems(FXCollections.observableArrayList(titles));
     }
-    public void openGame(){
 
+    // Stub methods for other button actions (implement as needed)
+    @FXML
+    private void onAddButton() {
+        // TODO: Add game logic
+        System.out.println("Add button clicked");
+    }
+
+    @FXML
+    private void onHelpButton() {
+        // TODO: Help logic
+        System.out.println("Help button clicked");
+    }
+
+    @FXML
+    private void onExportButton() {
+        // TODO: Export logic
+        System.out.println("Export button clicked");
     }
 }
