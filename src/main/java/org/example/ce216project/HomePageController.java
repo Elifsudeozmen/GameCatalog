@@ -1,10 +1,14 @@
 package org.example.ce216project;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 
 import java.util.*;
 
@@ -81,19 +85,26 @@ public class HomePageController {
     // Stub methods for other button actions (implement as needed)
     @FXML
     private void onAddButton() {
-        // TODO: Add game logic
-        System.out.println("Add button clicked");
+        try{
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/ce216project/addGame.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Add New Game");
+            stage.setScene(new Scene(root));
+            stage.show();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
     private void onHelpButton() {
-        // TODO: Help logic
-        System.out.println("Help button clicked");
+
     }
 
     @FXML
     private void onExportButton() {
-        // TODO: Export logic
-        System.out.println("Export button clicked");
+
     }
 }
