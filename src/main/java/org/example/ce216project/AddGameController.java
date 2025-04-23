@@ -1,5 +1,8 @@
 package org.example.ce216project;
-
+import javafx.event.ActionEvent;
+import javafx.scene.control.ButtonType;
+import java.util.Optional;
+import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 
@@ -20,5 +23,20 @@ public class AddGameController {
 
     public void onHelpButton() {
         showHelpDialog();
+    }
+    @FXML
+    private void doCancelOperation(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Cancel??");
+        alert.setHeaderText("Are you sure you want to cancel?");
+        alert.setContentText("All data that isn't saved will be lost");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.close();
+        }
+    }
+    public void onCancelButton(ActionEvent event){
+        doCancelOperation(event);
     }
 }

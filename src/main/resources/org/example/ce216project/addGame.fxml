@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="org.example.ce216project.AddGameController">
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ce216project.AddGameController">
 
     <!-- Orta kısım: Form -->
     <center>
@@ -88,7 +88,7 @@
             </padding>
             <Button fx:id="saveButton" maxWidth="Infinity" text="save" HBox.hgrow="ALWAYS" />
             <Button fx:id="clearButton" maxWidth="Infinity" text="clear" HBox.hgrow="ALWAYS" />
-            <Button fx:id="cancelButton" maxWidth="Infinity" text="cancel" HBox.hgrow="ALWAYS" />
+            <Button fx:id="cancelButton" maxWidth="Infinity" onAction="#onCancelButton" text="cancel" HBox.hgrow="ALWAYS" />
             <Button fx:id="helpButton" maxWidth="Infinity" onAction="#onHelpButton" text="Help" HBox.hgrow="ALWAYS" />
         </HBox>
     </bottom>
