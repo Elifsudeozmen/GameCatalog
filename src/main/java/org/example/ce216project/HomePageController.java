@@ -1,5 +1,7 @@
 package org.example.ce216project;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,8 +10,11 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class HomePageController {
@@ -119,6 +124,34 @@ public class HomePageController {
 
     @FXML
     private void onExportButton() {
+        if(gameList==null|| gameList.isEmpty()){
+            showAlert(Alert.AlertType.WARNING,"Export Error","There are no games to export.");
+            return;
+        }
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Game List");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON Files (*.json)", "*.json"));
+        fileChooser.setInitialFileName("games.json");
 
+        Stage stage= (Stage) exportButton.getScene().getWindow();
+        java.io.File file = fileChooser.showSaveDialog(stage);
+
+        if(file !=null){
+            try(FileWriter writer = new FileWriter(file)){
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                gson.toJson(gameList,writer);
+                showAlert(Alert.AlertType.INFORMATION,"Success","Games exported");
+            }catch (IOException e) {
+                e.printStackTrace();
+                showAlert(Alert.AlertType.ERROR,"Export Failed","An error occured");
+            }
+        }
+    }
+    private void showAlert(Alert.AlertType alertType, String title,String message){
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
