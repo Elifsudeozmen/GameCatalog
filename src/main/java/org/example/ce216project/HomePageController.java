@@ -34,6 +34,7 @@ public class HomePageController {
         this.gameList = games;
         updateGameListView(games);
         populateGenreButtons();
+        setupGameClickListener();
 
     }
 
@@ -123,5 +124,47 @@ public class HomePageController {
     @FXML
     private void onExportButton() {
 
+    }
+    private void setupGameClickListener() {
+        gameListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent click) {
+                if (click.getClickCount() == 2) { // double click
+                    String selectedTitle = gameListView.getSelectionModel().getSelectedItem();
+                    if (selectedTitle != null) {
+                        Game selectedGame = findGameByTitle(selectedTitle);
+                        if (selectedGame != null) {
+                            openGameDetailsPage(selectedGame);
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    private Game findGameByTitle(String title) {
+        for (Game game : gameList) {
+            if (game.getTitle().equals(title)) {
+                return game;
+            }
+        }
+        return null;
+    }
+
+    private void openGameDetailsPage(Game game) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/ce216project/gameDetails.fxml"));
+            Parent root = loader.load();
+
+            GameDetailsController controller = loader.getController();
+            controller.setGame(game);
+
+            Stage stage = new Stage();
+            stage.setTitle(game.getTitle() + " Details");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
