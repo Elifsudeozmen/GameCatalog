@@ -2,11 +2,41 @@ package org.example.ce216project;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ButtonType;
 import java.util.Optional;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 
 public class AddGameController {
+    @FXML
+    private TextField titleField;
+    @FXML
+    private TextField releaseYearField;
+    @FXML
+    private TextField genreField;
+    @FXML
+    private TextField playtimeField;
+    @FXML
+    private TextField developerField;
+    @FXML
+    private TextField formatField;
+    @FXML
+    private TextField publisherField;
+    @FXML
+    private TextField languageField;
+    @FXML
+    private TextField platformsField;
+    @FXML
+    private TextField ratingField;
+    @FXML
+    private TextField translatorsField;
+    @FXML
+    private TextField tagsField;
+    @FXML
+    private TextField steamIdField;
+    @FXML
+    private TextField coverImageField;
+
     @FXML
     private void showHelpDialog() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -39,5 +69,32 @@ public class AddGameController {
     public void onCancelButton(ActionEvent event){
         doCancelOperation(event);
     }
+    @FXML
+    private void doClearOperation(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Clear??");
+        alert.setHeaderText("Are you sure you want to clear?");
+        alert.setContentText("All progress will be lost");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            titleField.clear();
+            releaseYearField.clear();
+            genreField.clear();
+            playtimeField.clear();
+            developerField.clear();
+            formatField.clear();
+            publisherField.clear();
+            languageField.clear();
+            platformsField.clear();
+            ratingField.clear();
+            translatorsField.clear();
+            tagsField.clear();
+            steamIdField.clear();
+            coverImageField.clear();
+        }
+    }
 
+    public void onClearButton(ActionEvent event) {
+        doClearOperation(event);
+    }
 }
