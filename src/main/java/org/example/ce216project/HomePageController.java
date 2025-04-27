@@ -9,6 +9,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
 import java.util.*;
 
@@ -32,6 +34,7 @@ public class HomePageController {
         this.gameList = games;
         updateGameListView(games);
         populateGenreButtons();
+
     }
 
     @FXML
