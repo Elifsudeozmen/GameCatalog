@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.ce216project.GameDetailsController">
+
+    <children>
+
+        <VBox spacing="10" layoutX="20.0" layoutY="20.0">
+
+            <Label fx:id="titleLabel" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+
+            <Label fx:id="developerLabel" />
+            <Label fx:id="publisherLabel" />
+            <Label fx:id="genreLabel" />
+            <Label fx:id="platformLabel" />
+            <Label fx:id="yearLabel" />
+            <Label fx:id="ratingLabel" />
+            <Label fx:id="playtimeLabel" />
+
+            <HBox spacing="10" style="-fx-padding: 10 0 0 0;">
+                <Button text="Return" onAction="#onReturnButton" />
+                <Button text="Edit" onAction="#onEditButton" />
+                <Button text="Delete" onAction="#onDeleteButton" />
+            </HBox>
+
+        </VBox>
+
+    </children>
+
+</AnchorPane>

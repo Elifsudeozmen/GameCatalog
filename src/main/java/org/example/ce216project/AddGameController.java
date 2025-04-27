@@ -39,4 +39,5 @@ public class AddGameController {
     public void onCancelButton(ActionEvent event){
         doCancelOperation(event);
     }
+
 }
