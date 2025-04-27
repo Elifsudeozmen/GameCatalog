@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="20" style="-fx-background-color: #EEA7B0; -fx-padding: 30;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ce216project.MainPageController">
+<VBox alignment="CENTER" spacing="20" style="-fx-background-color: #EEA7B0; -fx-padding: 30;" xmlns="http://javafx.com/javafx/22-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.ce216project.MainPageController">
 
 
     <Label style="-fx-font-size: 22px; -fx-text-fill: #6a0572; -fx-font-weight: bold;" text="🎮 Welcome to Game Catalog App! 🎮" />
