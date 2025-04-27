@@ -5,7 +5,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class GameDetailsController {
-
+//
     @FXML
     private Label titleLabel, developerLabel, publisherLabel, genreLabel, platformLabel, yearLabel, ratingLabel, playtimeLabel;
 
