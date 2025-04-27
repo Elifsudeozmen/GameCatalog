@@ -86,7 +86,7 @@
             <padding>
                     <Insets bottom="15" left="15" right="15" top="15" />
             </padding>
-            <Button fx:id="saveButton" maxWidth="Infinity" text="save" HBox.hgrow="ALWAYS" />
+            <Button fx:id="saveButton" maxWidth="Infinity" onAction="#onSaveButton" text="save" HBox.hgrow="ALWAYS" />
             <Button fx:id="clearButton" maxWidth="Infinity" onAction="#onClearButton" text="clear" HBox.hgrow="ALWAYS" />
             <Button fx:id="cancelButton" maxWidth="Infinity" onAction="#onCancelButton" text="cancel" HBox.hgrow="ALWAYS" />
             <Button fx:id="helpButton" maxWidth="Infinity" onAction="#onHelpButton" text="Help" HBox.hgrow="ALWAYS" />

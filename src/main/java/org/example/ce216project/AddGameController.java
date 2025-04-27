@@ -1,11 +1,15 @@
 package org.example.ce216project;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ButtonType;
+
+import java.util.Collections;
 import java.util.Optional;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import java.util.List;
+import java.util.ArrayList;
 
 public class AddGameController {
     @FXML
@@ -97,4 +101,79 @@ public class AddGameController {
     public void onClearButton(ActionEvent event) {
         doClearOperation(event);
     }
+    @FXML
+    private void doSaveOperation(ActionEvent event) {
+
+        Game newGame = new Game();
+        newGame.setTitle(getOrDefault(titleField.getText()));
+        newGame.setDeveloper(getOrDefault(developerField.getText()));
+        newGame.setPublisher(getOrDefault(publisherField.getText()));
+        newGame.setFormat(getOrDefault(formatField.getText()));
+        newGame.setSteamId(getOrDefault(steamIdField.getText()));
+        newGame.setCoverImagePath(getOrDefault(coverImageField.getText()));
+        newGame.setReleaseYear(parseIntegerOrDefault(releaseYearField.getText()));
+        newGame.setPlaytime(parseDoubleOrDefault(playtimeField.getText()));
+        newGame.setRating(parseDoubleOrDefault(ratingField.getText()));
+        newGame.setGenres(parseListOrDefault(genreField.getText()));
+        newGame.setPlatforms(parseListOrDefault(platformsField.getText()));
+        newGame.setTranslators(parseListOrDefault(translatorsField.getText()));
+        newGame.setLanguage(parseListOrDefault(languageField.getText()));
+        newGame.setTags(parseListOrDefault(tagsField.getText()));
+
+        if (JSONHandler.getLastLoadedFilePath() != null) {
+            List<Game> existingGames = JSONHandler.readGamesFromJson(JSONHandler.getLastLoadedFilePath());
+            if (existingGames != null) {
+                existingGames.add(newGame);
+                JSONHandler.writeGamesToJson(JSONHandler.getLastLoadedFilePath(), existingGames);
+            }
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success!");
+        alert.setHeaderText(null);
+        alert.setContentText("Game saved successfully!");
+        alert.showAndWait();
+
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    private String getOrDefault(String text) {
+        if (text == null || text.trim().isEmpty()) {
+            return "Not Specified";
+        }
+        return text.trim();
+    }
+
+    private int parseIntegerOrDefault(String text) {
+        try {
+            return Integer.parseInt(text.trim());
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    private double parseDoubleOrDefault(String text) {
+        try {
+            return Double.parseDouble(text.trim());
+        } catch (Exception e) {
+            return 0.0;
+        }
+    }
+
+    private List<String> parseListOrDefault(String text) {
+        if (text == null || text.trim().isEmpty()) {
+            return Collections.singletonList("Not Specified");
+        }
+        String[] parts = text.split(",");
+        List<String> list = new ArrayList<>();
+        for (String part : parts) {
+            list.add(part.trim());
+        }
+        return list;
+    }
+    public void onSaveButton(ActionEvent event){
+        doSaveOperation(event);
+    }
+
 }

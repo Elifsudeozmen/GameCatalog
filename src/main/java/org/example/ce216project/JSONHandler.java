@@ -21,6 +21,25 @@ public class JSONHandler {
             return null;
         }
     }
+    public static String lastLoadedFilePath;
+
+    public static String getLastLoadedFilePath() {
+        return lastLoadedFilePath;
+    }
+
+    public static void setLastLoadedFilePath(String path) {
+        lastLoadedFilePath = path;
+    }
+
+    public static void writeGamesToJson(String filePath, List<Game> games){
+        Gson gson = new Gson();
+        try(FileWriter writer = new FileWriter(filePath)){
+            gson.toJson(games, writer);
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
 
 
 }
