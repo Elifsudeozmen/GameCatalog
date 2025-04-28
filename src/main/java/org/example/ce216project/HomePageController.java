@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ListView;
 
 import java.util.*;
 
@@ -27,6 +28,8 @@ public class HomePageController {
 
     @FXML
     private MenuButton moreMenuButton;
+    private static HomePageController instance;
+
 
     private List<Game> gameList = new ArrayList<>();
 
@@ -166,5 +169,29 @@ public class HomePageController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public HomePageController() {
+        instance = this;
+    }
+
+    public static void refreshGameListStatic() {
+        if (instance != null) {
+            instance.refreshGameList();
+        }
+    }
+    public void refreshGameList() {
+        String filePath = JSONHandler.getLastLoadedFilePath();
+        if (filePath != null) {
+            List<Game> games = JSONHandler.readGamesFromJson(filePath);
+            if (games != null) {
+                setGameList(games);
+            }
+        }
+    }
+
+
+    @FXML
+    public void initialize() {
+        refreshGameList();
     }
 }

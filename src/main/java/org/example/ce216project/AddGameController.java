@@ -103,6 +103,12 @@ public class AddGameController {
     }
     @FXML
     private void doSaveOperation(ActionEvent event) {
+        String filePath = JSONHandler.getLastLoadedFilePath();
+
+        if (filePath == null) {
+            showErrorAlert("No file loaded", "Please load a JSON file first.");
+            return;
+        }
 
         Game newGame = new Game();
         newGame.setTitle(getOrDefault(titleField.getText()));
@@ -120,13 +126,12 @@ public class AddGameController {
         newGame.setLanguage(parseListOrDefault(languageField.getText()));
         newGame.setTags(parseListOrDefault(tagsField.getText()));
 
-        if (JSONHandler.getLastLoadedFilePath() != null) {
-            List<Game> existingGames = JSONHandler.readGamesFromJson(JSONHandler.getLastLoadedFilePath());
-            if (existingGames != null) {
-                existingGames.add(newGame);
-                JSONHandler.writeGamesToJson(JSONHandler.getLastLoadedFilePath(), existingGames);
-            }
+        List<Game> existingGames = JSONHandler.readGamesFromJson(filePath);
+        if (existingGames == null) {
+            existingGames = new ArrayList<>();
         }
+        existingGames.add(newGame);
+        JSONHandler.writeGamesToJson(filePath, existingGames);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success!");
@@ -138,6 +143,14 @@ public class AddGameController {
         stage.close();
     }
 
+
+    private void showErrorAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
     private String getOrDefault(String text) {
         if (text == null || text.trim().isEmpty()) {
             return "Not Specified";
@@ -146,21 +159,26 @@ public class AddGameController {
     }
 
     private int parseIntegerOrDefault(String text) {
+        if (text == null || text.trim().isEmpty()) {
+            return 0;
+        }
         try {
             return Integer.parseInt(text.trim());
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return 0;
         }
     }
 
     private double parseDoubleOrDefault(String text) {
+        if (text == null || text.trim().isEmpty()) {
+            return 0.0;
+        }
         try {
             return Double.parseDouble(text.trim());
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             return 0.0;
         }
     }
-
     private List<String> parseListOrDefault(String text) {
         if (text == null || text.trim().isEmpty()) {
             return Collections.singletonList("Not Specified");

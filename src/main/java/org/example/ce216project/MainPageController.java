@@ -23,6 +23,7 @@ public class MainPageController {
 
         if (selectedFile != null) {
             if (selectedFile.getName().endsWith(".json")) {
+                JSONHandler.setLastLoadedFilePath(selectedFile.getAbsolutePath());
                 List<Game> games = JSONHandler.readGamesFromJson(selectedFile.getAbsolutePath());
                 System.out.println("Selected file: " + selectedFile.getAbsolutePath());
                 System.out.println("Name: " + games.get(0).getTitle());
