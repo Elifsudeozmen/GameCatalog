@@ -138,9 +138,12 @@ public class AddGameController {
         alert.setHeaderText(null);
         alert.setContentText("Game saved successfully!");
         alert.showAndWait();
+        HomePageController.refreshGameListStatic();
+
 
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         stage.close();
+
     }
 
 
