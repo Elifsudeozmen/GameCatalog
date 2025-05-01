@@ -80,6 +80,7 @@ public class HomePageController {
                 .toList();
 
         gameListView.setItems(FXCollections.observableArrayList(filteredTitles));
+        clearFilterButton.setVisible(true); // Show clear button
     }
 
     private void updateGameListView(List<Game> games) {
@@ -113,7 +114,8 @@ public class HomePageController {
         alert.setContentText(
                 "🔍 To search for a game, use the search bar.\n" +
                         "🏷️ To filter games according to their tags, use the filters.\n" +
-                        "➕ To add more games, use the 'Add Game' button.\n" +
+                        "➕ To add more " +
+                        "games, use the 'Add Game' button.\n" +
                         "📄 To display game info, click on a game.\n" +
                         "📤 If you're done, use the 'Export' button."
         );
@@ -190,8 +192,42 @@ public class HomePageController {
     }
 
 
-    @FXML
+  /*  @FXML
     public void initialize() {
         refreshGameList();
     }
+    public void deleteGame(Game game) {
+        gameList.remove(game);
+        updateGameListView(gameList);
+        populateGenreButtons();
+    }*/
+    @FXML
+    private void initialize() {
+        gameListView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { // double click to open
+                String selectedTitle = gameListView.getSelectionModel().getSelectedItem();
+                if (selectedTitle != null) {
+                    Game selectedGame = gameList.stream()
+                            .filter(g -> g.getTitle().equals(selectedTitle))
+                            .findFirst()
+                            .orElse(null);
+                    if (selectedGame != null) {
+                        openGameDetailsPage(selectedGame);
+                    }
+                }
+            }
+        });
+    }
+
+    @FXML
+    private Button clearFilterButton;
+    @FXML
+    private void onClearFilter() {
+        updateGameListView(gameList);
+        clearFilterButton.setVisible(false); // Hide the button again
+    }
+
+
+
+
 }
