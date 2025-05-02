@@ -4,92 +4,38 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.ce216project.GameDetailsController"
-            prefWidth="800" prefHeight="600"
-            style="-fx-background-color: #FFD1DC; -fx-padding: 20;">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.ce216project.GameDetailsController" prefWidth="800" prefHeight="600">
+    <children>
+        <HBox spacing="30" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
 
-    <!-- Game Image -->
-    <ImageView fx:id="gameImageView"
-               layoutX="30" layoutY="30"
-               fitWidth="250" fitHeight="300"
-               style="-fx-border-color: black;" />
+            <!-- Sol: Resim -->
+            <VBox alignment="TOP_CENTER" spacing="10" prefWidth="280">
+                <ImageView fx:id="gameImageView" fitWidth="250" fitHeight="350" preserveRatio="true" />
+                <Label text="Cover Image" style="-fx-font-style: italic;" />
+            </VBox>
 
-    <!-- Game Info -->
-    <VBox spacing="10" layoutX="300" layoutY="30" prefWidth="460">
-        <Label fx:id="titleLabel" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+            <!-- Sağ: Bilgiler ve Butonlar -->
+            <VBox spacing="8" prefWidth="500">
+                <Label fx:id="titleLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                <Label fx:id="developerLabel" />
+                <Label fx:id="publisherLabel" />
+                <Label fx:id="releaseYearLabel" />
+                <Label fx:id="playtimeLabel" />
+                <Label fx:id="formatLabel" />
+                <Label fx:id="languageLabel" />
+                <Label fx:id="ratingLabel" />
+                <Label fx:id="platformsLabel" />
+                <Label fx:id="translatorsLabel" />
+                <Label fx:id="steamIdLabel" />
+                <Label fx:id="genresLabel" />
+                <Label fx:id="tagsLabel" />
 
-        <HBox spacing="5">
-            <Label text="Developer:" style="-fx-font-weight: bold;" />
-            <Label fx:id="developerLabel" />
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button fx:id="editButton" text="Edit" onAction="#onEditButton" />
+                    <Button fx:id="deleteButton" text="Delete" onAction="#onDeleteButton" />
+                    <Button fx:id="returnButton" text="Back" onAction="#onReturnButton" />
+                </HBox>
+            </VBox>
         </HBox>
-
-        <HBox spacing="5">
-            <Label text="Publisher:" style="-fx-font-weight: bold;" />
-            <Label fx:id="publisherLabel" />
-        </HBox>
-
-        <HBox spacing="5">
-            <Label text="Release Year:" style="-fx-font-weight: bold;" />
-            <Label fx:id="releaseYearLabel" />
-        </HBox>
-
-        <HBox spacing="5">
-            <Label text="Playtime:" style="-fx-font-weight: bold;" />
-            <Label fx:id="playtimeLabel" />
-        </HBox>
-
-        <HBox spacing="5">
-            <Label text="Format:" style="-fx-font-weight: bold;" />
-            <Label fx:id="formatLabel" />
-        </HBox>
-
-        <HBox spacing="5">
-            <Label text="Language:" style="-fx-font-weight: bold;" />
-            <Label fx:id="languageLabel" />
-        </HBox>
-
-        <HBox spacing="5">
-            <Label text="Rating:" style="-fx-font-weight: bold;" />
-            <Label fx:id="ratingLabel" />
-        </HBox>
-
-        <HBox spacing="5">
-            <Label text="Platforms:" style="-fx-font-weight: bold;" />
-            <Label fx:id="platformsLabel" />
-        </HBox>
-
-        <HBox spacing="5">
-            <Label text="Translators:" style="-fx-font-weight: bold;" />
-            <Label fx:id="translatorsLabel" />
-        </HBox>
-
-        <HBox spacing="5">
-            <Label text="Steam ID:" style="-fx-font-weight: bold;" />
-            <Label fx:id="steamIdLabel" />
-        </HBox>
-
-        <HBox spacing="5">
-            <Label text="Genres:" style="-fx-font-weight: bold;" />
-            <Label fx:id="genresLabel" wrapText="true" />
-        </HBox>
-
-        <HBox spacing="5">
-            <Label text="Tags:" style="-fx-font-weight: bold;" />
-            <Label fx:id="tagsLabel" wrapText="true" />
-        </HBox>
-    </VBox>
-
-    <!-- Buttons -->
-    <HBox spacing="20" layoutX="300" layoutY="500">
-        <Button fx:id="editButton" text="✏ Edit" prefWidth="100"
-                onAction="#onEditButton"
-                style="-fx-background-color: #4CAF50; -fx-text-fill: white;" />
-        <Button fx:id="deleteButton" text="🗑 Delete" prefWidth="100"
-                onAction="#onDeleteButton"
-                style="-fx-background-color: #f44336; -fx-text-fill: white;" />
-        <Button fx:id="returnButton" text="↩ Return" prefWidth="100"
-                onAction="#onReturnButton"
-                style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
-    </HBox>
-
+    </children>
 </AnchorPane>

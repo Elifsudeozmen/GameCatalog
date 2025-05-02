@@ -5,7 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class HelloApplication extends Application {
     @Override
@@ -14,12 +16,14 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Game Catalog");
         stage.setScene(scene);
-        System.out.println("Application Starting...");
 
         stage.show();
     }
 
     public static void main(String[] args) {
+
+
         launch();
+
     }
 }

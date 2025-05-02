@@ -10,8 +10,12 @@ public class GameCatalog {
         games=new ArrayList<>();
     }
 
+    public void setGames(List<Game> games) {
+        this.games = games;
+    }
 
 
-
-
+    public List<Game> getGames() {
+        return games;
+    }
 }
