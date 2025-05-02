@@ -88,7 +88,18 @@ public class GameDetailsController {
 
         confirm.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                // Logic to delete game from main list can be implemented through a shared state or callback
+                // 1. JSON dosyasından sil
+                String filePath = JSONHandler.getLastLoadedFilePath();
+                if (filePath != null) {
+                    java.util.List<Game> games = JSONHandler.readGamesFromJson(filePath);
+                    games.removeIf(g -> g.getTitle().equals(currentGame.getTitle()));
+                    JSONHandler.writeGamesToJson(filePath, games);
+                }
+
+                // 2. Ana sayfayı güncelle
+                HomePageController.refreshGameListStatic();
+
+                // 3. Detay sayfasını kapat
                 ((Stage) deleteButton.getScene().getWindow()).close();
             }
         });
