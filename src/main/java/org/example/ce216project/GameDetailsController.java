@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,14 +56,22 @@ public class GameDetailsController {
 
         // Set image if available
         if (game.getCoverImagePath() != null && !game.getCoverImagePath().isEmpty()) {
-            String path = "/" + game.getCoverImagePath();  // başına "/" eklenmeli
-            try {
-                Image image = new Image(getClass().getResourceAsStream(path));
-                gameImageView.setImage(image);
-            } catch (Exception e) {
-                System.out.println("Could not load image: " + path);
-                e.printStackTrace();
+            String path = "/" + game.getCoverImagePath(); // örn: "/covers/rdr2.jpg"
+            InputStream imageStream = getClass().getResourceAsStream(path);
+
+            if (imageStream != null) {
+                try {
+                    Image image = new Image(imageStream);
+                    gameImageView.setImage(image);
+                } catch (Exception e) {
+                    System.err.println("HATA: Resim yüklenirken sorun oluştu -> " + path);
+                    e.printStackTrace();
+                }
+            } else {
+                System.err.println("UYARI: Resim dosyası bulunamadı -> " + path);
             }
+        } else {
+            System.err.println("UYARI: Oyun için geçerli bir kapak görseli yolu belirtilmemiş.");
         }
     }
 
