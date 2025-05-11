@@ -7,9 +7,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
-
 import javafx.event.ActionEvent;
-
 import java.io.File;
 import java.util.List;
 
@@ -76,5 +74,19 @@ public class MainPageController {
                         "We’re here to assist you 24/7! 😊"
         );
         alert.showAndWait();
+    }
+    private void showUserGuide(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("User Guide");
+        alert.setHeaderText("Here is the User Guide: ");
+        alert.setContentText(
+                "To get started if you need contact information click on the Help button\n"+
+                        "Once you are ready click on the upload a file and upload a json file containing your games\n"+
+                        "In the main pages you can use the help buttons for extra information 😊"
+        );
+        alert.showAndWait();
+    }
+    public void onUserGuideButton(){
+        showUserGuide();
     }
 }
