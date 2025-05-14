@@ -9,10 +9,19 @@ import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.event.ActionEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class MainPageController {
-    public void onEnterFileButtonClick(ActionEvent event) {
+    public void onEnterButtonClick(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("homePage.fxml"));
+        Parent homePageRoot = loader.load();
+        HomePageController controller = loader.getController();
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(homePageRoot));
+        stage.show();
+    }
+    /*public void onEnterFileButtonClick(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select a JSon File");
         FileChooser.ExtensionFilter jsonFilter = new FileChooser.ExtensionFilter("JSON Files (*.json)", "*.json");
@@ -50,7 +59,7 @@ public class MainPageController {
                 showAlert("No File Selected", "You must select a JSON file.");
         }
     }
-
+*/
     public void onHelpButton(){
         showHelpDialog();
 
