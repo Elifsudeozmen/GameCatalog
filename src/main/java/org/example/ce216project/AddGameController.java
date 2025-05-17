@@ -1,4 +1,5 @@
 package org.example.ce216project;
+
 import javafx.event.ActionEvent;
 import javafx.scene.control.ButtonType;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class AddGameController {
+
     @FXML
     private TextField titleField;
     @FXML
@@ -41,6 +43,30 @@ public class AddGameController {
     @FXML
     private TextField coverImageField;
 
+    // Şu an üzerinde çalışılan veya düzenlenen oyun
+    Game currentGame = null;
+
+    // Formu mevcut oyun verisi ile doldurur (düzenleme için)
+    public void setGame(Game game) {
+        this.currentGame = game;
+        if (game != null) {
+            titleField.setText(game.getTitle());
+            releaseYearField.setText(String.valueOf(game.getReleaseYear()));
+            genreField.setText(String.join(", ", game.getGenres()));
+            playtimeField.setText(String.valueOf(game.getPlaytime()));
+            developerField.setText(game.getDeveloper());
+            formatField.setText(game.getFormat());
+            publisherField.setText(game.getPublisher());
+            languageField.setText(String.join(", ", game.getLanguage()));
+            platformsField.setText(String.join(", ", game.getPlatforms()));
+            ratingField.setText(String.valueOf(game.getRating()));
+            translatorsField.setText(String.join(", ", game.getTranslators()));
+            tagsField.setText(String.join(", ", game.getTags()));
+            steamIdField.setText(game.getSteamId());
+            coverImageField.setText(game.getCoverImagePath());
+        }
+    }
+
     @FXML
     private void showHelpDialog() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -58,6 +84,7 @@ public class AddGameController {
     public void onHelpButton() {
         showHelpDialog();
     }
+
     @FXML
     private void doCancelOperation(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -70,9 +97,11 @@ public class AddGameController {
             stage.close();
         }
     }
+
     public void onCancelButton(ActionEvent event){
         doCancelOperation(event);
     }
+
     @FXML
     private void doClearOperation(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -101,6 +130,7 @@ public class AddGameController {
     public void onClearButton(ActionEvent event) {
         doClearOperation(event);
     }
+
     @FXML
     private void doSaveOperation(ActionEvent event) {
         String filePath = JSONHandler.getLastLoadedFilePath();
@@ -110,12 +140,19 @@ public class AddGameController {
             return;
         }
 
+        // SteamId boş olmasın diye kontrol ekleyelim
+        String steamId = getOrDefault(steamIdField.getText());
+        if (steamId.equals("Not Specified")) {
+            showErrorAlert("Validation Error", "Steam ID cannot be empty.");
+            return;
+        }
+
         Game newGame = new Game();
         newGame.setTitle(getOrDefault(titleField.getText()));
         newGame.setDeveloper(getOrDefault(developerField.getText()));
         newGame.setPublisher(getOrDefault(publisherField.getText()));
         newGame.setFormat(getOrDefault(formatField.getText()));
-        newGame.setSteamId(getOrDefault(steamIdField.getText()));
+        newGame.setSteamId(steamId);
         newGame.setCoverImagePath(getOrDefault(coverImageField.getText()));
         newGame.setReleaseYear(parseIntegerOrDefault(releaseYearField.getText()));
         newGame.setPlaytime(parseDoubleOrDefault(playtimeField.getText()));
@@ -130,22 +167,38 @@ public class AddGameController {
         if (existingGames == null) {
             existingGames = new ArrayList<>();
         }
-        existingGames.add(newGame);
+
+        boolean updated = false;
+
+        // Eğer düzenlenen oyun var ise steamId bazlı güncelleme yap
+        if (currentGame != null) {
+            for (int i = 0; i < existingGames.size(); i++) {
+                if (existingGames.get(i).getSteamId().equals(currentGame.getSteamId())) {
+                    existingGames.set(i, newGame);
+                    updated = true;
+                    break;
+                }
+            }
+        }
+
+        // Eğer güncelleme olmadıysa yeni ekle
+        if (!updated) {
+            existingGames.add(newGame);
+        }
+
         JSONHandler.writeGamesToJson(filePath, existingGames);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success!");
         alert.setHeaderText(null);
-        alert.setContentText("Game saved successfully!");
+        alert.setContentText(updated ? "Game updated successfully!" : "Game saved successfully!");
         alert.showAndWait();
-        HomePageController.refreshGameListStatic();
 
+        HomePageController.refreshGameListStatic();
 
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         stage.close();
-
     }
-
 
     private void showErrorAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -154,6 +207,7 @@ public class AddGameController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     private String getOrDefault(String text) {
         if (text == null || text.trim().isEmpty()) {
             return "Not Specified";
@@ -182,6 +236,7 @@ public class AddGameController {
             return 0.0;
         }
     }
+
     private List<String> parseListOrDefault(String text) {
         if (text == null || text.trim().isEmpty()) {
             return Collections.singletonList("Not Specified");
@@ -193,9 +248,8 @@ public class AddGameController {
         }
         return list;
     }
+
     public void onSaveButton(ActionEvent event){
         doSaveOperation(event);
     }
-
-
 }
