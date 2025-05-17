@@ -10,13 +10,39 @@ import javafx.scene.Parent;
 import javafx.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
 
 public class MainPageController {
-    public void onEnterButtonClick(ActionEvent event) throws IOException {
+    public void onEnterButtonClick(ActionEvent event) throws IOException, URISyntaxException {
+        String targetPath = System.getProperty("user.home") + "/Desktop/games.json";
+        File targetFile = new File(targetPath);
+
+        // Eğer masaüstünde dosya yoksa, kaynaklardan kopyala
+        if (!targetFile.exists()) {
+            URL resourceUrl = getClass().getResource("/games.json");
+            if (resourceUrl != null) {
+                Files.copy(Paths.get(resourceUrl.toURI()), targetFile.toPath());
+            } else {
+                System.err.println("GameJson.json not found in resources.");
+                return;
+            }
+        }
+
+        // Dosya yolunu ayarla ve oku
+        JSONHandler.setLastLoadedFilePath(targetPath);
+        List<Game> games = JSONHandler.readGamesFromJson(targetPath);
+
+        // Ana sayfayı yükle
         FXMLLoader loader = new FXMLLoader(getClass().getResource("homePage.fxml"));
         Parent homePageRoot = loader.load();
         HomePageController controller = loader.getController();
+        controller.setGameList(games);
+
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(homePageRoot));
         stage.show();

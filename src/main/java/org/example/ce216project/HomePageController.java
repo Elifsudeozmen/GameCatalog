@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class HomePageController {
 
@@ -265,42 +266,72 @@ public class HomePageController {
     }
     private void importFileAction(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select a JSon File");
+        fileChooser.setTitle("Select a JSON File");
         FileChooser.ExtensionFilter jsonFilter = new FileChooser.ExtensionFilter("JSON Files (*.json)", "*.json");
         fileChooser.getExtensionFilters().add(jsonFilter);
         File selectedFile = fileChooser.showOpenDialog(new Stage());
 
         if (selectedFile != null) {
             if (selectedFile.getName().endsWith(".json")) {
-                JSONHandler.setLastLoadedFilePath(selectedFile.getAbsolutePath());
-                List<Game> games = JSONHandler.readGamesFromJson(selectedFile.getAbsolutePath());
-                System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-                System.out.println("Name: " + games.get(0).getTitle());
-                System.out.println("Languages: " + games.get(0).getLanguage());
                 try {
+                    // Mevcut dosya yolu (önceden yüklenen veya sabit bir yol)
+                    String currentFilePath = JSONHandler.getLastLoadedFilePath();
+
+                    // Eğer mevcut dosya yoksa, import edilen dosyayı direkt kopyala ve kullan
+                    if (currentFilePath == null || currentFilePath.isEmpty()) {
+                        // Burada istersen kendi default json dosyanın pathini ver
+                        currentFilePath = selectedFile.getAbsolutePath();
+                        JSONHandler.setLastLoadedFilePath(currentFilePath);
+                    }
+
+                    // Mevcut oyunları oku
+                    List<Game> existingGames = JSONHandler.readGamesFromJson(currentFilePath);
+                    if (existingGames == null) existingGames = new ArrayList<>();
+
+                    // Yeni import edilen oyunları oku
+                    List<Game> importedGames = JSONHandler.readGamesFromJson(selectedFile.getAbsolutePath());
+
+                    // Mevcut oyunların steamId'lerini set haline al
+                    Set<String> existingSteamIds = existingGames.stream()
+                            .map(Game::getSteamId)
+                            .collect(Collectors.toSet());
+
+                    // Yeni oyunlardan aynı steamId olanları filtrele
+                    List<Game> filteredNewGames = importedGames.stream()
+                            .filter(g -> !existingSteamIds.contains(g.getSteamId()))
+                            .collect(Collectors.toList());
+
+                    // Mevcut oyunlara yeni oyunları ekle
+                    existingGames.addAll(filteredNewGames);
+
+                    // Güncellenen listeyi dosyaya yaz
+                    JSONHandler.writeGamesToJson(currentFilePath, existingGames);
+
+                    // UI güncellemesi
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("homePage.fxml"));
                     Parent homePageRoot = loader.load();
 
                     HomePageController controller = loader.getController();
-                    controller.setGameList(games);
+                    controller.setGameList(existingGames);
 
-                    Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(new Scene(homePageRoot));
                     stage.show();
-                }
-                catch(Exception e){
-                    e.printStackTrace();
-                }
 
+                    System.out.println(filteredNewGames.size() + " new games imported.");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    showAlert("Error", "An error occurred while importing the file.");
+                }
             } else {
                 showAlert("Invalid File", "Please select a valid JSON file!");
             }
-
-        }
-        else{
+        } else {
             showAlert("No File Selected", "You must select a JSON file.");
         }
     }
+
     private void showAlert(String title,String message){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
