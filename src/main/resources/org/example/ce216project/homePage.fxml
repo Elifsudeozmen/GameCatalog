@@ -13,20 +13,36 @@
     <children>
 
         <!-- Search Bar -->
-        <TextField fx:id="searchBar" layoutX="50.0" layoutY="30.0" onKeyReleased="#onEnterSearch" prefHeight="30.0" prefWidth="500.0" promptText="search..." style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8;" />
+        <TextField fx:id="searchBar"
+                   AnchorPane.leftAnchor="50.0"
+                   AnchorPane.rightAnchor="50.0"
+                   layoutY="30.0"
+                   prefHeight="30.0"
+                   promptText="search..."
+                   style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8;" />
 
         <!-- Genre Filter & Clear Button -->
-        <HBox layoutX="50.0" layoutY="75.0" spacing="10.0">
+        <HBox spacing="10.0"
+              AnchorPane.leftAnchor="50.0"
+              AnchorPane.topAnchor="75.0">
             <MenuButton fx:id="moreMenuButton" prefWidth="120" styleClass="category-button" text="Filters" />
             <Button fx:id="clearFilterButton" onAction="#onClearFilter" prefWidth="130" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-background-radius: 6;" text="❌ Clear Filter" visible="false" />
         </HBox>
 
         <!-- Game ListView -->
-        <ListView fx:id="gameListView" layoutX="50.0" layoutY="120.0" prefHeight="220.0" prefWidth="500.0" style="-fx-background-color: #FFE3E3; -fx-control-inner-background: #FFE3E3;" />
+        <ListView fx:id="gameListView"
+                  AnchorPane.leftAnchor="50.0"
+                  AnchorPane.rightAnchor="50.0"
+                  AnchorPane.topAnchor="120.0"
+                  AnchorPane.bottomAnchor="70.0"
+                  style="-fx-background-color: #FFE3E3; -fx-control-inner-background: #FFE3E3;" />
 
         <!-- Bottom Buttons -->
-        <HBox layoutX="50.0" layoutY="360.0" prefWidth="500.0" spacing="10.0">
-         <Button fx:id="importFileButton" mnemonicParsing="false" onAction="#onImportFileButton" text="Import File" />
+        <HBox spacing="10.0"
+              AnchorPane.leftAnchor="50.0"
+              AnchorPane.rightAnchor="50.0"
+              AnchorPane.bottomAnchor="20.0">
+            <Button fx:id="importFileButton" mnemonicParsing="false" onAction="#onImportFileButton" text="Import File" HBox.hgrow="ALWAYS" />
             <Button fx:id="addButton" onAction="#onAddButton" styleClass="action-button" text="Add Game" HBox.hgrow="ALWAYS" />
             <Button fx:id="helpButton" onAction="#onHelpButton" styleClass="action-button" text="Help" HBox.hgrow="ALWAYS" />
             <Button fx:id="exportButton" onAction="#onExportButton" styleClass="action-button" text="Export" HBox.hgrow="ALWAYS" />
