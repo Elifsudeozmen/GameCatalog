@@ -35,12 +35,12 @@ public class GameDetailsController {
     private Game currentGame;
     private boolean isEditMode = false;
 
-    public void setGame(Game game) {
+    public void setGame(Game game) throws IOException {
         this.currentGame = game;
         displayGameDetails(game);
     }
 
-    private void displayGameDetails(Game game) {
+    private void displayGameDetails(Game game) throws IOException {
         titleLabel.setText(game.getTitle());
         developerLabel.setText("Developer: " + game.getDeveloper());
         publisherLabel.setText("Publisher: " + game.getPublisher());
@@ -63,7 +63,9 @@ public class GameDetailsController {
 
             if (imageStream != null) {
                 try {
+                    gameImageView.setImage(null);
                     Image image = new Image(imageStream);
+                    System.out.println("Resim genişliği: " + image.getWidth() + ", yüksekliği: " + image.getHeight());
                     gameImageView.setImage(image);
                 } catch (Exception e) {
                     System.err.println("HATA: Resim yüklenirken sorun oluştu -> " + path);
@@ -75,6 +77,10 @@ public class GameDetailsController {
         } else {
             System.err.println("UYARI: Oyun için geçerli bir kapak görseli yolu belirtilmemiş.");
         }
+
+
+
+
     }
 
     @FXML

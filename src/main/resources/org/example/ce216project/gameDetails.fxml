@@ -10,7 +10,8 @@
 
             <!-- Sol: Resim -->
             <VBox alignment="TOP_CENTER" spacing="10" prefWidth="280">
-                <ImageView fx:id="gameImageView" fitWidth="250" fitHeight="350" preserveRatio="true" />
+                <ImageView fx:id="gameImageView" fitWidth="250" fitHeight="350" preserveRatio="true" smooth="true" style="-fx-border-color: red; -fx-border-width: 2;" />
+
                 <Label text="Cover Image" style="-fx-font-style: italic;" />
             </VBox>
 
